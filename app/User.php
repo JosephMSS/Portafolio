@@ -36,4 +36,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    # One to one
+    /**
+     * only the relationship is added in the user 
+     * since it is not necessary 
+     * to access the users from the profiles
+     *  */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    #One to many
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+    #One to one  Polymorphic
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imageable');
+    }
 }
