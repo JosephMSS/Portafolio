@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->date('date');
             $table->string('title');
             $table->text('description');
+            $table->boolean('state');
 
             $table->timestamps();
 
