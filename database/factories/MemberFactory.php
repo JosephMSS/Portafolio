@@ -7,6 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Member::class, function (Faker $faker) {
     return [
-        //
+        'name'=>$faker->lastName,
+        'web'=>$faker->url,
+
     ];
 });

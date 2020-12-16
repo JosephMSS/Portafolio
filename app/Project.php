@@ -16,6 +16,8 @@ class Project extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    #One to many
     public function members()
     {
         return $this->belongsToMany(Member::class);
@@ -26,4 +28,10 @@ class Project extends Model
     {
         return $this->morphToMany(Tag::class,'taggable');
     }
+     #One to one  Polymorphic
+     public function image()
+     {
+         return $this->morphOne(Image::class,'imageable');
+     }
+
 }
