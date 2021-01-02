@@ -17,11 +17,11 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
+            $table->boolean('state');
             
             $table->date('date');
             $table->string('title');
             $table->text('description');
-            $table->boolean('state');
 
             $table->timestamps();
 

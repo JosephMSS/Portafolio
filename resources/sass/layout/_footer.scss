@@ -1,0 +1,15 @@
+.footer{
+    color:$secondary-color;
+    background-color:$primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 480px) {
+    .footer {
+        display: block;
+        text-align: center;
+        border: 1px solid transparent;
+    }
+}

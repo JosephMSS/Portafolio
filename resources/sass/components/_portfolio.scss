@@ -1,0 +1,106 @@
+.portfolio {
+    &__title {
+        color: #026fff;
+        text-transform: uppercase;
+        font-family: "Source Sans Pro", sans-serif;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+    &__project {
+        border: 1px solid gray;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        padding: 20px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        strong {
+            font-family: $secondary-font;
+        }
+        figure {
+            margin: 0;
+        }
+        &--details {
+            width: 50%;
+        }
+        &--title {
+            font-size: 30px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        &--tech {
+            margin: 10px 0;
+        }
+        &--date {
+            margin: 10px 0;
+        }
+        &--url {
+            margin: 10px 0;
+        }
+        &--description {
+            font-size: 20px;
+        }
+        &--imageContainer {
+            width: 50%;
+        }
+        &--image {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    .portfolio {
+        padding: 0;
+    }
+}
+@media screen and (max-width: 767px) {
+    .portfolio {
+        &__title {
+            font-size: 1.2em;
+            margin: 0.5em 0;
+        }
+        &__project {
+            display: block;
+            &--details {
+                width: auto;
+                font-size: 16px;
+            }
+            &--title {
+                font-size: 1.5em;
+                margin-bottom: 0.3em;
+            }
+            &--tech {
+                margin: 0.4em 0;
+                font-size: 0.7em;
+            }
+            &--date {
+                margin: 0.4em 0;
+                font-size: 1em;
+            }
+            &--url {
+                margin: 0.4em 0;
+                font-size: 1em;
+            }
+            &--description {
+                font-size: 1em;
+            }
+            &--imageContainer {
+                width: auto;
+                text-align: center;
+            }
+        }
+    }
+}
+@media screen and (max-width: 480px) {
+    .portfolio {
+        &__project {
+            &--details {
+                font-size: 12px;
+            }
+        }
+    }
+}

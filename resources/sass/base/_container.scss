@@ -1,0 +1,17 @@
+.container {
+    /* border: 1px solid red; */
+    max-width: 1000px;
+    flex: 1;
+    /* toma todo el ancho disponible en el elemento */
+    margin: 0 auto;
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    height: inherit;
+    flex-wrap: inherit;
+  }
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0 1em;
+  }
+}
