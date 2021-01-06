@@ -20,7 +20,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories=$this->category::latest()->get();
+        // dd($categories);
+        return view('categories.index',compact('categories'));
     }
 
     /**
@@ -66,7 +68,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit',compact('category'));
     }
 
     /**

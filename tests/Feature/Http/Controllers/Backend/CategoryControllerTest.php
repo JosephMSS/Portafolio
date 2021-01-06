@@ -50,4 +50,32 @@ class CategoryControllerTest extends TestCase
         $this->assertDatabaseMissing('categories', ['name' => ''])
             ->assertDatabaseCount('categories', 0);
     }
+    public function test_edit()
+    {
+        $this->withExceptionHandling();
+        $category= factory(Category::class)->create();
+        
+
+        $response = $this->get(route('category.edit', [
+            'category' => $category->id
+            ]));
+        
+         $category=Category::first();
+            
+        $response->assertViewIs('categories.edit')
+        ->assertViewHas('category', $category)
+        ->assertStatus(200);
+    }
+    public function test_index()
+    {
+        factory(Category::class, 2)->create();
+
+        $categories = Category::latest()->get();
+
+        $response =  $this->get(route('category.index'));
+
+        $response->assertStatus(200)
+            ->assertViewIs('categories.index')
+            ->assertViewHas('categories', $categories);
+    }
 }
