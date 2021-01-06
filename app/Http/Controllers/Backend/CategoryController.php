@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
+use App\Http\Requests\Category as CategoryRequest;  
+// use Illuminate\Http\Request as CategoryRequest;
 class CategoryController extends Controller
 {
+    protected $category;
+    public function __construct(Category  $category)
+    {
+        $this->category=$category;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,14 +36,15 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $category=Category::create(['name'=>$request->name]);
-        $category->save();
-        return back()->with('status','Creado con éxito');
+        $this->category::create([
+            'name'=>$request->name
+        ]);
+        return back()->with('status','Successfully created');
     }
 
     /**
@@ -66,11 +72,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\CategoryRequest  $request
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         //
     }

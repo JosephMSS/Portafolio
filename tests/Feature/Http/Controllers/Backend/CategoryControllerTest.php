@@ -34,10 +34,20 @@ class CategoryControllerTest extends TestCase
         ]);
 
         $response->assertStatus(302)
-            ->assertSessionHas('status', 'Creado con éxito');
+            ->assertSessionHas('status', 'Successfully created');
 
         $this->assertDatabaseHas('categories', ['name' => $category->name]);
     }
 
-  
+    public function test_validate_category_fields()
+    {
+        $this->withExceptionHandling();
+
+        $response = $this->post(route('category.store'), [
+            'name' => ''
+        ]);
+        $response->assertStatus(302);
+        $this->assertDatabaseMissing('categories', ['name' => ''])
+            ->assertDatabaseCount('categories', 0);
+    }
 }
