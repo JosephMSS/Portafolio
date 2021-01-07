@@ -53,18 +53,29 @@ class CategoryControllerTest extends TestCase
     public function test_edit()
     {
         $this->withExceptionHandling();
-        $category= factory(Category::class)->create();
-        
+        $category = factory(Category::class)->create();
+
 
         $response = $this->get(route('category.edit', [
             'category' => $category->id
-            ]));
-        
-         $category=Category::first();
-            
+        ]));
+
+        $category = Category::first();
+
         $response->assertViewIs('categories.edit')
-        ->assertViewHas('category', $category)
-        ->assertStatus(200);
+            ->assertViewHas('category', $category)
+            ->assertStatus(200);
+    }
+    public function test_update()
+    {
+        $category = factory(Category::class)->create();
+        $response = $this->put(route('category.update', [
+            'category' => $category,
+            'name' => 'new name'
+
+        ]));
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('categories', ['name' => 'new name']);
     }
     public function test_index()
     {

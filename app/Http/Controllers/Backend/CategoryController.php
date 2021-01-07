@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Category as CategoryRequest;  
+use App\Http\Requests\Category as CategoryRequest;
 // use Illuminate\Http\Request as CategoryRequest;
 class CategoryController extends Controller
 {
     protected $category;
     public function __construct(Category  $category)
     {
-        $this->category=$category;
+        $this->category = $category;
     }
     /**
      * Display a listing of the resource.
@@ -20,9 +20,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=$this->category::latest()->get();
+        $categories = $this->category::latest()->get();
         // dd($categories);
-        return view('categories.index',compact('categories'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -44,20 +44,9 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $this->category::create([
-            'name'=>$request->name
+            'name' => $request->name
         ]);
-        return back()->with('status','Successfully created');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
+        return back()->with('status', 'Successfully created');
     }
 
     /**
@@ -68,7 +57,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit',compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -80,7 +69,10 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request->name
+        ]);
+        return back()->with('status','Successfully updated');
     }
 
     /**
