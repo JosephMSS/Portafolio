@@ -77,6 +77,16 @@ class CategoryControllerTest extends TestCase
         $response->assertStatus(302);
         $this->assertDatabaseHas('categories', ['name' => 'new name']);
     }
+    public function test_destroy()
+    {
+        $category=factory(Category::class)->create();
+        $respose=$this->delete(route('category.destroy',[
+            'category'=>$category
+        ]));
+        $this->assertDatabaseMissing('categories',[
+            'id'=>$category->id
+        ]);
+    }
     public function test_index()
     {
         factory(Category::class, 2)->create();
