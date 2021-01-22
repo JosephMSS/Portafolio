@@ -80,12 +80,21 @@ class CategoryControllerTest extends TestCase
     public function test_destroy()
     {
         $category=factory(Category::class)->create();
-        $respose=$this->delete(route('category.destroy',[
+        $response=$this->delete(route('category.destroy',[
             'category'=>$category
         ]));
         $this->assertDatabaseMissing('categories',[
             'id'=>$category->id
         ]);
+    }
+    public function test_softDelete()
+    {
+        $category=factory(Category::class)->create();
+        $response=$this->delete(route('category.destroy',[
+            'category'=>$category
+        ]));
+
+        $this->assertSoftDeleted('categories',['id'=>$category->id]);
     }
     public function test_index()
     {
